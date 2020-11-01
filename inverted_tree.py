@@ -21,4 +21,37 @@ def lowest_common_ancestor(node1, node2):
 
 
 ###############################################################################
-# too much work to write tests for this
+class Node:
+    def __init__(self, parent=None):
+        self.parent = parent
+
+#                1
+#            2       3
+#        6     4    7    5
+#            8               9
+#         10   11
+#                12
+n1 = Node()
+n2 = Node(n1)
+n3 = Node(n1)
+n4 = Node(n2)
+n5 = Node(n3)
+n6 = Node(n2)
+n7 = Node(n3)
+n8 = Node(n4)
+n9 = Node(n5)
+n10 = Node(n8)
+n11 = Node(n8)
+n12 = Node(n11)
+
+assert lowest_common_ancestor(n1, n1) == n1
+assert lowest_common_ancestor(n1, n2) == n1
+assert lowest_common_ancestor(n2, n3) == n1
+assert lowest_common_ancestor(n6, n9) == n1
+assert lowest_common_ancestor(n12, n9) == n1
+assert lowest_common_ancestor(n6, n8) == n2
+assert lowest_common_ancestor(n6, n11) == n2
+assert lowest_common_ancestor(n9, n4) == n1
+assert lowest_common_ancestor(n9, n7) == n3
+
+print('All good!')
